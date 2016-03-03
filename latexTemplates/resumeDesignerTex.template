@@ -1,0 +1,247 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Template: Designer's CV
+%
+% Source: http://www.howtotex.com
+% 
+% Feel free to distribute this example, but please keep the referral
+% to HowToTeX.com
+% 
+% Date: March 2012
+%
+% Modified by Lim Lian Tze to support multiple pages using fix provided at
+% http://www.howtotex.com/templates/creating-a-designers-cv-in-latex/
+% Date: November 2014
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document properties and packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper, 10pt, final]{memoir}
+
+% misc
+ % font
+\renewcommand{\familydefault}{bch}
+ % no pagenumbering
+\pagestyle{empty}
+ % no paragraph indentation
+\setlength{\parindent}{0pt}
+
+% required packages (add your own)
+ % column layout
+\usepackage{flowfram}
+% margins
+\usepackage[top=1cm, left=0.2cm, right=1cm, bottom=1cm]{geometry}
+ % figures
+\usepackage{graphicx}
+
+% Required for adding links and customizing them
+\usepackage{hyperref}
+% Set link colors
+\hypersetup{colorlinks, breaklinks, urlcolor=RoyalBlue, linkcolor=RoyalBlue} 
+
+ % color
+\usepackage[usenames, dvipsnames]{xcolor}
+ % columns env.
+\usepackage{multicol}
+  \setlength{\multicolsep}{0pt}
+ % compact lists
+\usepackage{paralist}
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create column layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define length commands
+\setlength{\vcolumnsep}{\baselineskip}
+\setlength{\columnsep}{\vcolumnsep}
+
+% left frame
+\newflowframe{0.2\textwidth}{\textheight}{0pt}{0pt}[left]
+  \newlength{\LeftMainSep}
+  \setlength{\LeftMainSep}{0.2\textwidth}
+  \addtolength{\LeftMainSep}{1\columnsep}
+
+% small static frame for the vertical line
+\newstaticframe{0.3pt}{\textheight}{\LeftMainSep}{0pt}
+
+% content of the static frame
+\begin{staticcontents}{1}
+\hfill
+\tikz{
+  \draw[loosely dotted,color=RoyalBlue,line width=0.5pt,yshift=0]
+  (0,0)  (0,\textheight);}
+\hfill\mbox{}
+\end{staticcontents}
+ 
+% right frame
+\addtolength{\LeftMainSep}{1.5pt}
+\addtolength{\LeftMainSep}{1\columnsep}
+\newflowframe{0.7\textwidth}{\textheight}{\LeftMainSep}{0pt}[main01]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define macros (for convience)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sep}{\vspace{1.5em}}
+\newcommand{\SmallSep}{\vspace{0.5em}}
+\newcommand{\MiniSep}{\vspace{0.25em}}
+
+\newenvironment{Objective}
+  {\textbf{\color{RoyalBlue} Objective}}
+  {\Sep\ignorespacesafterend}
+
+%\newcommand{\CVSection}[1]
+%  {\Large\textbf{\|#1}\par
+%  \MiniSep\normalsize\normalfont}
+
+%\newcommand{\CVItem}[1]
+%  {\textbf{\color{RoyalBlue} \|#1}}
+
+{{CVItem}}
+{{CVSection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Left frame
+%%%%%%%%%%%%%%%%%%%%
+\begin{flushright}\small
+{{contacts['I']['name']}}\\
+{{contacts['I']['phone']}}\\
+{{latex_email(contacts['I']['email'])}}\\
+{{latex_href(contacts['I']['linkedin'], 'Linkedin Profile' )}}\\
+Eligible to work in: USA \& EEUU.\\
+\end{flushright}\normalsize
+
+\framebreak
+% Right frame
+%%%%%%%%%%%%%%%%%%%%
+
+\Huge\bfseries {\color{RoyalBlue} {{contacts['I']['name']}} }\\
+\Large\bfseries {{position['jobName']}} \\
+
+\normalsize\normalfont
+
+% Objetive
+\begin{Objective}
+{{position['objective']}}
+\end{Objective}
+
+% Experience
+\CVSection{Experience}
+{% for job in jobs %}
+  \CVItem{ {{job['dates']}}\\
+  {{job['positionName']}} $\cdotp$ {{job['company']}} $\cdotp$ {{job['location']}}. }
+  \MiniSep
+  {% for i in job['achievements'] %}
+    {{i}}
+  {% endfor%}
+  {% for ref in job['references'] %}
+    Reference: {{ref['refName']}} $\cdotp$ {{latex_email(ref['refEmail'])}}
+  {% endfor %}
+  \SmallSep
+{% endfor %}
+\Sep
+
+% Education
+\CVSection{Education}
+{% for edu in school %}
+  \CVItem{ {{edu['dates']}}\\
+  {{edu['mayor']}} $\cdotp$ {{edu['location']}}. }
+  \MiniSep
+  {% for i in edu['achievements'] %}
+    {{i}}
+  {% endfor%}
+  \MiniSep
+  {% for ref in edu['references'] %}
+    Reference: {{ref['refName']}} $\cdotp$ {{latex_email(ref['refEmail'])}}
+  {% endfor %}
+  \SmallSep
+{% endfor %}
+\Sep
+
+
+% You will need these 3 lines at the end of each page!
+
+\clearpage
+% Second Page
+%%%%%%%%%%%%%%%%%%%%
+
+\framebreak
+% Left frame
+%%%%%%%%%%%%%%%%%%%%
+
+% Persona information in every page
+\begin{flushright}\small
+{{contacts['I']['name']}}\\
+{{contacts['I']['phone']}}
+{{latex_url(contacts['I']['email'])}}\\
+{{latex_href( contacts['I']['linkedin'], 'Linkedin Profile' )}}\\
+Eligible to work in: USA \& EEUU.\\
+\end{flushright}\normalsize
+
+\framebreak
+% Right frame
+%%%%%%%%%%%%%%%%%%%%
+
+% Skills
+\CVSection{Computer Skills}
+{% for skill in compuSkills %}
+  \CVItem{ {{skill['grade']}}}: {{", ".join(skill['skills'])}}.
+  \SmallSep
+{% endfor %}
+\Sep 
+
+% Languajes
+\CVSection{ {{languages['name']}} }
+{% for i in languages['items'] %}
+  \CVItem{ {{i["txtA"]}}}: {{i["txtB"]}}
+  \SmallSep
+{% endfor %}
+\Sep 
+
+% Awards
+\CVSection{ {{awards['name']}} }
+{% for i in awards['items'] %}
+  {% if i['link'] %}
+    \CVItem{ {{i["txtA"]}}}: {{i["txtB"]}} \\
+    {{latex_url(i["link"])}}
+  {% else %}
+    \CVItem{ {{i["txtA"]}}}: {{i["txtB"]}}
+  {% endif %}
+  \SmallSep
+{% endfor %}
+\Sep
+
+% Other Information
+\CVSection{ {{other['name']}} }
+{% for i in other['items'] %}
+  {% if i['link'] %}
+    \CVItem{ {{i["txtA"]}}}: {{i["txtB"]}} \\
+    {{latex_url(i["link"])}}
+  {% else %}
+    \CVItem{ {{i["txtA"]}}}: {{i["txtB"]}}
+  {% endif %}
+  \SmallSep
+{% endfor %}
+\Sep
+
+\end{document}
+
+

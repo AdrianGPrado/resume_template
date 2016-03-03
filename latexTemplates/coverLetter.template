@@ -1,0 +1,110 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plain Cover Letter
+% LaTeX Template
+% Version 1.0 (28/5/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Rensselaer Polytechnic Institute 
+% http://www.rpi.edu/dept/arc/training/latex/resumes/
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+% PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------------
+
+% Default font size of the document, change to 10pt to fit more text
+\documentclass{letter}
+
+%% Default font is the New Century Schoolbook PostScript font 
+\usepackage{droidsans}
+
+%% Uncomment this (while commenting the above line) to use the Helvetica font
+%\usepackage{helvet} 
+
+% Required for adding links and customizing them
+\usepackage{hyperref}
+
+% Set link colors
+\hypersetup{colorlinks, breaklinks, urlcolor=blue, linkcolor=blue} 
+
+% Margins
+% Moves the top of the document 1 inch above the default
+\topmargin=-1in
+
+% Total height of the text on the page before text goes on to the next page, this can be increased in a longer letter
+\textheight=8.5in
+
+% Position of the left margin, can be negative or positive if you want more or less room
+\oddsidemargin=-10pt
+
+% Total width of the text, increase this if the left margin was decreased and vice-versa
+\textwidth=6.5in
+
+% Pushes the date (at the top) to the left, comment this line to have the date on the right
+\let\raggedleft\raggedright 
+
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+% ADDRESSEE SECTION
+%-------------------------------------------------------------------------------
+\begin{letter}{
+FROM: {{contacts['I']['name']}}
+\newline
+\newline
+TO:\ \ \ \ \ \ {{position['comName']}} Recruiting Committee.
+\newline
+RE:\ \ \ \ \ \ Cover letter.
+\newline}
+
+%-------------------------------------------------------------------------------
+% LETTER CONTENT SECTION
+%-------------------------------------------------------------------------------
+
+\opening{Estimated Recruiting Committee,} 
+
+% I heard about {{position['comName']}}, while browsing the internet, due to my increasing interest in trading, investment and how software is applied into this field. After reading the job description and see that my background matches the desired skills, I feel encouraged to apply to the position.
+
+% \vspace{1em}
+%After been contacted through Linkedin, and checking that my skills match the position. I would like to express my sincere interest in the position, {{latex_href(position['jobURL'], position['jobName'])}}.
+
+% After checking that my skills match the position. I would like to express my sincere interest in the position, {{latex_href(position['jobURL'], position['jobName'])}}.
+
+After checking that my skills match the position. I feel encouraged to apply to this position.
+
+% \vspace{1em}
+% With this letter I would like to express my sincere interest in the position, {{latex_href(position['jobURL'], position['jobName'])}}.
+
+\vspace{1em}
+I am looking for the next step in my career, and the description of the position fits my profile. I began building my background in scientific computing in college while working inside an European Space Agency. I also obtained my M.S. in Computational mathematics where I used CUDA language to develop Finite element methods. As a plus I have working experience as a full time employee in XFlow-CFD, and more recently at TOTAL E\&P Advance Computing team where I developed scientific software inside a High Performance Computing environment. The codes that I have developed take into account nowadays technological advances such as as scalability, coalesce memory access, code velocity, result accuracy and efficient design. The code I produce is not only suppose to run, it has to have all the qualities listed above.
+
+\vspace{1em}
+Apart from the mathematical code development major languages: C, C++, Python and Fortran, I have skills programming in Python, which I have used during my internship at TOTAL E\&P to test the final products and also to develop my own independent projects.
+
+\vspace{1em}
+I have enclosed my resume for your review. I very much appreciate your time and consideration, and I should be grateful if you take my application into account.
+
+% \closing{Sincerely, \\
+\vspace{1em}
+Looking forward to hearing from you,
+
+{{contacts['I']['name']}}
+
+\vspace{2em}
+{{contacts['I']['name']}}\\
+{{contacts['I']['phone']}}\\
+{{latex_email(contacts['I']['email'])}}\\
+{{latex_href(contacts['I']['linkedin'], 'Linkedin Profile' )}}\\
+
+\end{letter}
+
+\end{document}

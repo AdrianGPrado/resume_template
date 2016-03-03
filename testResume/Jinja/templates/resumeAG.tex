@@ -1,0 +1,22 @@
+
+
+{% for url in urls %}
+  {{ url }}
+{% endfor %}
+
+{{firstName}} {{familyName}}
+{{email}}
+{{linkedin}}
+{{phone}}
+
+% Experience
+{% for job in jobs %}
+\CVSection{Experience}
+{{ job['positionName'] }}. {{ job['company'] }}. {{ job['location'] }}. {{ job['dates'] }} \\
+{{ job['achievements']}}
+
+{% for ref in job['references'] %}
+Reference: {{ref['refName']}} \ \ $\cdotp$\ \ {{ref['refEmail']}}
+{% endfor %}
+\Sep
+{% endfor %}
